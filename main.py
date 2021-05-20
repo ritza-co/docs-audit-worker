@@ -9,7 +9,7 @@ from get_images import get_images_from_url
 GET_WORK_URL = "https://docs-audit-server.ritza.repl.co/task-request"
 SUBMIT_WORK_URL = "https://docs-audit-server.ritza.repl.co/result"
 
-WORKER_ID = os.getenv("REPL_OWNER") + "_" + os.getenv("REPL_SLUG")
+WORKER_ID = os.getenv("REPL_OWNER") + "_" + os.getenv("REPL_SLUG") 
 
 def get_task():
     jsn = {"worker_id": WORKER_ID}
