@@ -17,13 +17,15 @@ def get_absolute_urls(base_url, submitted_url, urls):
         if "#" in url:
           url = url.split("#")[0]
         if url[0:2] == './':
-          relative_base_url = '/'.join(submitted_url.split('/')[:-1])
-          absolute = urljoin(relative_base_url, url)
+          absolute = urljoin(submitted_url, url)
         else:
-          print(f"url is {url}")
           absolute = urljoin(base_url, url)
-          print(f"absolute is {absolute}")
 
+        if absolute == 'https://docs.replit.com/CentralizedAutograder-java':
+          print(f"url is {url}")
+          print(f"base url is {base_url}")
+          print(f"submitted url is {submitted_url}")
+          print(f"absolute is {absolute}")
         absolutes.append(absolute)
     return absolutes
 

@@ -14,6 +14,7 @@ WORKER_ID = os.getenv("REPL_OWNER") + "_" + os.getenv("REPL_SLUG")
 def get_task():
     jsn = {"worker_id": WORKER_ID}
     r = requests.post(GET_WORK_URL, json=jsn)
+    print(r)
     return r.json()
 
 def do_work(task):
@@ -29,9 +30,9 @@ def do_work(task):
         print("Starting image audit task")
         url = task['input_data']
         images = get_images_from_url(url)
-        oversize_images = run_image_audit(images, url)
+        all_images = run_image_audit(images, url)
 
-        task_results = {'image_count': len(images), 'oversize_images': oversize_images}
+        task_results = {'image_count': len(images), 'oversize_images': all_images[0], 'right_size_images': all_images[1]}
 
     return task_results
 
