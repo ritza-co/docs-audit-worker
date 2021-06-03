@@ -14,19 +14,13 @@ def get_urls(html):
 def get_absolute_urls(base_url, submitted_url, urls):
     absolutes = []
     for url in urls:
-        if "#" in url:
-          url = url.split("#")[0]
-        if url[0:2] == './':
-          absolute = urljoin(submitted_url, url)
-        else:
-          absolute = urljoin(base_url, url)
-
-        if absolute == 'https://docs.replit.com/CentralizedAutograder-java':
-          print(f"url is {url}")
-          print(f"base url is {base_url}")
-          print(f"submitted url is {submitted_url}")
-          print(f"absolute is {absolute}")
-        absolutes.append(absolute)
+        print(f"Looping {url}")
+        # check if link isn't blank and not a ref to another section on the same page  
+        if url and url[0] != '#':
+            if "#" in url:
+              url = url.split("#")[0]
+            absolute = urljoin(submitted_url, url)
+            absolutes.append(absolute)
     return absolutes
 
 def get_links_from_url(url):

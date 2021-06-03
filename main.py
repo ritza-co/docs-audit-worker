@@ -15,7 +15,12 @@ def get_task():
     jsn = {"worker_id": WORKER_ID}
     r = requests.post(GET_WORK_URL, json=jsn)
     print(r)
-    return r.json()
+    try:
+        return r.json()
+    except Exception as e:
+        print("Couldn't get JSON")
+        print(e)
+        print(r.content)
 
 def do_work(task):
     if task['task_type'] == "link_audit":
@@ -32,7 +37,7 @@ def do_work(task):
         images = get_images_from_url(url)
         all_images = run_image_audit(images, url)
 
-        task_results = {'image_count': len(images), 'oversize_images': all_images[0], 'right_size_images': all_images[1]}
+        task_results = {'image_count': len(images), 'oversize_images': all_images[0], 'right_size_images': all_images[1], 'broken_images': all_images[2], 'broken_status_codes': all_images[3]}
 
     return task_results
 
