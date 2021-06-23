@@ -40,7 +40,7 @@ def process_image_urls(urls, site_url):
       
       if not filename:
           print("Expression didn't match with the url: {}".format(url))
-          continue
+         # continue
       if 'http' not in url:
           # add site url to image path if relative
           url = '{}{}'.format(base_url, url)
@@ -63,9 +63,13 @@ def process_image_urls(urls, site_url):
         broken_images.append({'path': url, 'size': None, 'code': image_request_results['status_code']})
 
     all_images.append(oversize_images)
+    print(f"oversize images are {oversize_images}")
     all_images.append(right_size_images)
+    print(f"Right size images are {right_size_images}")
     all_images.append(broken_images)
+    print(f"Broken images are {broken_images}")
     all_images.append(broken_status_codes)
+    print(f"broken_status_codes images are {broken_status_codes}")
       
     return all_images
 
